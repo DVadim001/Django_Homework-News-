@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Новости{% endblock %}</title>
+</head>
+
+<body>
+    <a href="/about-us">О нас</a>
+    <a href="/contact-us">Контакты</a>
+    <br>
+    <hr><br>
+
+    <form action="search" method="POST">
+        {% csrf_token %}
+        <input type="text" name="search_article">
+        <button>Поиск</button>
+    </form>
+
+    {% block content %}
+    <br><br>
+
+    {% if articles_news %}
+
+    {% for a in articles_news %}
+    <a href="{% url 'news:article' a.id %}">{{ a.news_title }}</a><br>
+    {% endfor %}
+
+    {% else %}
+    Новости не найдены.
+    {% endif %}
+
+
+    {% endblock %}
+
+</body>
+
+</html>

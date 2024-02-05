@@ -1,0 +1,38 @@
+{% extends 'home.html' %}
+
+{% block title %}{{ news.news_title }}{% endblock %}
+
+{% block content %}
+<a href="/">На главную</a>
+
+<h2>{{ news.news_title }}</h2>
+
+<p>{{ news.news_text }}</p>
+<em>{{ news.news_date }}</em>
+
+{% if comments %}
+{% for c in comments %}
+<p>
+    <strong>{{ c.comment_author }}</strong>
+    {{ c.comment_text }}<br>
+    <em>{{ c.comment_date }}</em>
+</p>
+{% endfor %}
+{% else %}
+Комментариев пока нет.
+{% endif %}
+
+
+
+<hr>
+
+<form action="{% url 'news:comment' news.id %}" method="POST">
+    {% csrf_token %}
+    <input type="text" required placeholder="Ваше имя" name="name"><br>
+    <textarea name="text" required placeholder="Текст комментария" cols="30" rows="10"></textarea><br>
+    <button type="submit">Оставить комментарий</button>
+</form>
+<hr>
+
+
+{% endblock %}

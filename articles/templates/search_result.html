@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+
+<hr>
+{% block content %}
+<hr><br>
+<a href="/">На главную</a>
+<h2>Результаты поиска</h2>
+{% for article in articles %}
+<p>
+  <a href="{% url 'news:article' article.id %}">{{ article.news_title }}</a>
+</p>
+{% empty %}
+<p>Новостей по запросу не найдено.</p>
+{% endfor %}
+{% endblock %}
