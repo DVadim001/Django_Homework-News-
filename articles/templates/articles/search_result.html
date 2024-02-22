@@ -1,4 +1,4 @@
-{% extends 'home.html' %}
+{% extends 'articles/home.html' %}
 
 <hr>
 {% block content %}
@@ -7,7 +7,7 @@
 <h2>Результаты поиска</h2>
 {% for article in articles %}
 <p>
-  <a href="{% url 'news:article' article.id %}">{{ article.news_title }}</a>
+  <a href="{% url 'articles:article' article.id %}">{{ article.news_title }}</a>
 </p>
 {% empty %}
 <p>Новостей по запросу не найдено.</p>

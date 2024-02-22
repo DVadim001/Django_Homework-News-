@@ -3,14 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
+    <title>Войти</title>
 </head>
 
 <body>
+<a href="{% url 'articles:home' %}">Главная</a>
+<a href="{% url 'articles:signup' %}">Регистрация</a>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button>Регистрация</button>
+        <button>Войти</button>
     </form>
 </body>
 

@@ -7,6 +7,18 @@
 </head>
 
 <body>
+
+    <!-- Если пользователь аутентифицирован, показываем ссылку "Выход" -->
+    {% if user.is_authenticated %}
+        <a href="{% url 'articles:logout' %}">Выход</a>
+    <!-- Если пользователь не аутентифицирован, показываем ссылку "Вход" -->
+    {% else %}
+        <a href="{% url 'articles:login' %}">Вход</a>
+    <a href="{% url 'articles:signup' %}">Регистрация</a>
+    {% endif %}
+
+
+
     <a href="/about-us">О нас</a>
     <a href="/contact-us">Контакты</a>
     <br>
@@ -24,7 +36,7 @@
     {% if articles_news %}
 
     {% for a in articles_news %}
-    <a href="{% url 'news:article' a.id %}">{{ a.news_title }}</a><br>
+    <a href="{% url 'articles:article' a.id %}">{{ a.news_title }}</a><br>
     {% endfor %}
 
     {% else %}
